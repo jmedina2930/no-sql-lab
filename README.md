@@ -2,7 +2,13 @@
 
 Expressjs app connected to a NoSQL database (Mongo DB)
 
-You need to create a file called .env.development, then copy the content from .env.example. Finally you need to change the DB_URL and DB_name to fit to your database config.
+You need to change the db.url and db.db_name attributes in `config/mongoose.js to fit to your database config:
+```
+const db = {
+  url: 'mongodb://localhost:27017/',
+  db_name: 'authors',
+};
+```
 
 To run the application, first at all, you need to install node libraries with ```npm install```, then you can run it with ```npm start``` or with ```npm run debug``` to follow changes in the code and recharge automatically.
 
