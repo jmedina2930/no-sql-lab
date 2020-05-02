@@ -4,7 +4,7 @@ const Author = require('../models/author');
 const router = express.Router();
 
 /**
- * GET users listing.
+ * GET authors listing.
  */
 router.get('/', async (req, res) => {
   try {

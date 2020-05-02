@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "debug": "DEBUG=myapp:* NODE_ENV=development npm start"
+    "start": "NODE_ENV=development nodemon ./bin/www",
+    "debug": "DEBUG=myapp:* npm start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
