@@ -8,7 +8,9 @@ const router = express.Router();
  */
 router.get('/', async (req, res) => {
   try {
-    const authors = await Author.find({ pais: 'Argentina' });
+    let filters = {};
+    if (req.query.pais) filters = { pais: req.query.pais };
+    const authors = await Author.find(filters);
     res.json(authors);
   } catch (err) {
     res.status(500).json({ message: err.message });
