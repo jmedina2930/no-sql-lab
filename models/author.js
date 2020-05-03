@@ -1,25 +1,28 @@
 const mongoose = require('mongoose');
 
 const AuthorSchema = new mongoose.Schema({
-  nombre: {
-    type: String,
-    required: true,
-  },
-  publicados: {
-    type: String,
-    required: true,
-  },
-  pais: {
-    type: String,
-    required: true,
-  },
+    nombre: {
+        type: String,
+        required: true,
+    },
+    apellido: {
+        type: String,
+    },
+    publicados: {
+        type: String,
+        required: true,
+    },
+    pais: {
+        type: String,
+        required: true,
+    },
 });
 
 AuthorSchema.set('toObject', {
-  virtuals: true,
+    virtuals: true,
 });
 AuthorSchema.set('toJSON', {
-  virtuals: true,
+    virtuals: true,
 });
 
 
