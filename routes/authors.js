@@ -1,3 +1,13 @@
+/*
+Trabajo Nosql Bases de datos
+Integrantes:
+Cristian David Ayala Pulgarin
+Cc: 1.038.120.364
+Neiver Tapia Escobar
+Cc: 1.020.482.757
+*/
+
+
 const express = require('express');
 const Author = require('../models/author');
 
@@ -16,6 +26,7 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
 /*
 Realizar los métodos (Endpoints) 
 adicionales para las siguientes consultas:
