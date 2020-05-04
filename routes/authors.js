@@ -15,6 +15,7 @@ const router = express.Router();
 
 /**
  * GET Authors listing.
+ * GET authors listing.
  */
 router.get('/', async (req, res) => {
   try {

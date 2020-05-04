@@ -2,6 +2,10 @@
 // require mongoose module
 const mongoose = require('mongoose');
 
+const db = {
+  url: 'mongodb://localhost:27017/',
+  db_name: 'authors',
+};
 /**
  * Mongoose options.
  */
@@ -27,7 +31,7 @@ const options = {
 function connectMongo() {
   let isConnectedBefore = false;
   const connect = () => mongoose.connect(
-    `${process.env.DB_URL}${process.env.DB_NAME}?retryWrites=true&w=majority`,
+    `${db.url}${db.db_name}?retryWrites=true&w=majority`,
     options,
   );
 
