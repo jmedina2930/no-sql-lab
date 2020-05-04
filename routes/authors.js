@@ -67,7 +67,7 @@ router.get('/autoresArgentinosOrPublicacionesMenoresQue20', async(req, res) => {
     try {
         let filters = {};
         filters = { $or: [{ pais: "Argentina" }, { publicados: { $lt: 20 } }] };
-        const authors = await Author.find(filters, { nombre: 1, _id: 0 });
+        const authors = await Author.find(filters, { apellido: 1, _id: 0 });
         res.json(authors);
     } catch (err) {
         res.status(500).json({ message: err.message });
