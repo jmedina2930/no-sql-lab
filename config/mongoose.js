@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const db = {
-  url: 'mongodb://localhost:27017/',
+  url: 'mongodb+srv://root:root@activitybbdd-vb51h.mongodb.net/laboratorio?retryWrites=true',
   db_name: 'authors',
 };
 /**
