@@ -4,13 +4,62 @@ const Author = require('../models/author');
 const router = express.Router();
 
 /**
- * GET users listing.
+ * GET authors listing.
  */
 router.get('/', async (req, res) => {
   try {
     let filters = {};
+    console.log(req.query);
     if (req.query.pais) filters = { pais: req.query.pais };
     const authors = await Author.find(filters);
+    res.json(authors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+/**
+ * GET  Publicados>=20 && pais=Colombia
+ */
+
+router.get('/colombianos-mayor20', async (req, res) => {
+  try {
+    let filters = {};
+    console.log(req.query);
+    if (req.query.pais) filters = { pais: req.query.pais };
+    const authors = await Author.find({ publicados: { $gte: 20 }, pais: 'Colombia' }, { nombre: 1, apellido: 2 });
+    res.json(authors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+/**
+ * GET  Autores sin apellido
+ */
+
+router.get('/sin-apellido', async (req, res) => {
+  try {
+    let filters = {};
+    console.log(req.query);
+    if (req.query.pais) filters = { pais: req.query.pais };
+    const authors = await Author.find({ apellido: { $exists: false } }, { nombre: 1 });
+    res.json(authors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+/**
+ * GET  Publicados<20 && pais=Argentina
+ */
+
+router.get('/argentinos-menor20', async (req, res) => {
+  try {
+    let filters = {};
+    console.log(req.query);
+    if (req.query.pais) filters = { pais: req.query.pais };
+    const authors = await Author.find({ publicados: { $lt: 20 }, pais: 'Argentina' }, { apellido: 1 });
     res.json(authors);
   } catch (err) {
     res.status(500).json({ message: err.message });

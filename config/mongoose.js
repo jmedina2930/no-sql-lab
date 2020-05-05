@@ -26,8 +26,7 @@ const options = {
 // export this function and imported by server.js
 function connectMongo() {
   let isConnectedBefore = false;
-  const connect = () => mongoose.connect(
-    `${process.env.DB_URL}${process.env.DB_NAME}?retryWrites=true&w=majority`,
+  const connect = () => mongoose.connect(`mongodb://localhost:27017/`,
     options,
   );
 
