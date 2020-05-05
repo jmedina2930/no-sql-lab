@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
 
 const AuthorSchema = new mongoose.Schema({
+
   nombre: {
     type: String,
     required: true,
+  },
+  apellido:{
+    type:String,
+    required: false,
   },
   publicados: {
     type: String,
@@ -12,7 +17,7 @@ const AuthorSchema = new mongoose.Schema({
   pais: {
     type: String,
     required: true,
-  },
+  }
 });
 
 AuthorSchema.set('toObject', {
