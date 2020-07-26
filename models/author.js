@@ -10,7 +10,7 @@ const AuthorSchema = new mongoose.Schema({
     required: false,
   },
   publicados: {
-    type: String,
+    type: Number,
     required: true,
   },
   pais: {
