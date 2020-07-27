@@ -29,5 +29,43 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
+/**
+ * GET authors publicaciones >20 y pais colombia.
+ */
+router.get('/sup20colombia', async (req, res) => {
+  try {
+    let filters = {};
+    filters = {publicados: {$gt:"20"},pais: "Colombia"},{nombre:1,apellido:1,_id:0};
+    const authors = await Author.find(filters);
+    res.json(authors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+/**
+ * GET authors whitout lastname.
+ */
+router.get('/sinApellido', async (req, res) => {
+  try {
+    let filters = {};
+    filters = {apellido:" "},{nombre:1, _id:0};
+    const authors = await Author.find(filters);
+    res.json(authors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+/**
+ * GET authors publicados < 20 o pais Argentina
+ */
+router.get('/inf20Argentina', async (req, res) => {
+  try {
+    let filters = {};
+    filters = { $or: [ { publicados: { $lt: "20" } }, { pais: "Argentina" } ] };
+    const authors = await Author.find(filters);
+    res.json(authors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 module.exports = router;
