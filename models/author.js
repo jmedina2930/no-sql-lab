@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const AuthorSchema = new mongoose.Schema({
   nombre: {
@@ -6,7 +6,7 @@ const AuthorSchema = new mongoose.Schema({
     required: true,
   },
   publicados: {
-    type: String,
+    type: Number,
     required: true,
   },
   pais: {
@@ -15,13 +15,12 @@ const AuthorSchema = new mongoose.Schema({
   },
 });
 
-AuthorSchema.set('toObject', {
+AuthorSchema.set("toObject", {
   virtuals: true,
 });
-AuthorSchema.set('toJSON', {
+AuthorSchema.set("toJSON", {
   virtuals: true,
 });
 
-
-const Author = mongoose.model('Author', AuthorSchema);
+const Author = mongoose.model("Author", AuthorSchema);
 module.exports = Author;
