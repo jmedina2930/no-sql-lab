@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const db = {
   url: 'mongodb://localhost:27017/',
-  db_name: 'authors',
+  db_name: 'lab',
 };
 /**
  * Mongoose options.
