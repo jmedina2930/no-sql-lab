@@ -17,6 +17,55 @@ router.get('/', async (req, res) => {
   }
 });
 
+/* Consulta 1*/
+
+router.get('/consulta1', async (req, res) => {
+  try {
+    let filters = {};
+    if (req.query.pais) filters = { pais: req.query.pais };
+    const authors = await Author.find(
+      {publicados: {$lte: 20}},
+      {nombre: 1, apellido: 1, _id: 0}
+    );
+    res.json(authors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+/* Consulta 2 */
+
+router.get('/consulta2', async (req, res) => {
+  try {
+    let filters = {};
+    if (req.query.pais) filters = { pais: req.query.pais };
+    const authors = await Author.find(
+      {apellido : { $ne: null }},
+      {nombre: 1, apellido: 1, _id: 0}
+    );
+    res.json(authors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+/* Consulta 3 */
+
+router.get('/consulta3', async (req, res) => {
+  try {
+    let filters = {};
+    if (req.query.pais) filters = { pais: req.query.pais };
+    const authors = await Author.find(
+      {$or: [ { publicados : { $gt : 20 }}, {pais: "Argentina"} ] },
+      {nombre: 1, apellido: 1, _id: 0}
+    );
+    res.json(authors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
 /**
  * Create a new Author
  */
