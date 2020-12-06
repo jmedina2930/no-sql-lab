@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 // require mongoose module
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const db = {
-  url: 'mongodb://localhost:27017/',
-  db_name: 'authors',
+  url:
+    "mongodb+srv://dbUser:1234@cluster0.mlqye.mongodb.net/authors?retryWrites=true",
+  db_name: "authors",
 };
 /**
  * Mongoose options.
@@ -30,39 +31,40 @@ const options = {
 // export this function and imported by server.js
 function connectMongo() {
   let isConnectedBefore = false;
-  const connect = () => mongoose.connect(
-    `${db.url}${db.db_name}?retryWrites=true&w=majority`,
-    options,
-  );
+  const connect = () =>
+    mongoose.connect(
+      `${db.url}${db.db_name}?retryWrites=true&w=majority`,
+      options
+    );
 
   connect();
 
-  mongoose.connection.on('connected', () => {
+  mongoose.connection.on("connected", () => {
     isConnectedBefore = true;
     console.log(
-      `Mongoose default connection is open to ${process.env.DB_NAME}`,
+      `Mongoose default connection is open to ${process.env.DB_NAME}`
     );
   });
 
-  mongoose.connection.on('error', (err) => {
+  mongoose.connection.on("error", (err) => {
     console.log(`Mongoose default connection has occured ${err} error`);
   });
 
-  mongoose.connection.on('disconnected', () => {
-    console.log('Mongoose default connection is disconnected');
+  mongoose.connection.on("disconnected", () => {
+    console.log("Mongoose default connection is disconnected");
     if (!isConnectedBefore) connect();
   });
 
-  mongoose.connection.on('reconnected', () => {
+  mongoose.connection.on("reconnected", () => {
     console.log(
-      `Mongoose default connection is reconnected to ${process.env.DB_NAME}`,
+      `Mongoose default connection is reconnected to ${process.env.DB_NAME}`
     );
   });
 
-  process.on('SIGINT', () => {
+  process.on("SIGINT", () => {
     mongoose.connection.close(() => {
       console.log(
-        'Mongoose default connection is disconnected due to application termination',
+        "Mongoose default connection is disconnected due to application termination"
       );
       process.exit(0);
     });
